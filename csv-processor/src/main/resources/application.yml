@@ -1,0 +1,34 @@
+server:
+  port: 6365
+  servlet.context-path: /csv-processor
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      use-new-id-generator-mappings: true
+    properties.hibernate.format_sql: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    platform: h2
+    username: root
+    password: root
+    driver-class-name: org.h2.Driver
+    initialize: true
+    initialization-mode: always
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+
+recipient-service:
+  ribbon:
+    listOfServers: recipient-service:6367
+
+---
+spring:
+  profiles: dev
+
+recipient-service:
+  ribbon:
+    listOfServers: localhost:6367

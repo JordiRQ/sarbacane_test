@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>recipient-service-parent</artifactId>
+        <groupId>com.sarbacane.entry_test</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>recipient-service-feign-client</artifactId>
+
+    <name>recipient-service - Feign Client</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources/schema</directory>
+                <excludes>
+                    <exclude>*.json</exclude>
+                </excludes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>${basedir}/src/test/java/resources</directory>
+                <includes>
+                    <include>*.json</include>
+                </includes>
+                <filtering>false</filtering>
+                <targetPath>resources</targetPath>
+            </testResource>
+        </testResources>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jsonschema2pojo</groupId>
+                    <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                    <version>${jsonschema2pojo-version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>${basedir}/target/generated-sources</outputDirectory>
+                    <includeJsr303Annotations>true</includeJsr303Annotations>
+                    <includeConstructors>true</includeConstructors>
+                    <constructorsRequiredPropertiesOnly>true</constructorsRequiredPropertiesOnly>
+                    <removeOldOutput>true</removeOldOutput>
+                    <formatDateTimes>true</formatDateTimes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-internal</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>${basedir}/src/main/resources/schemas</sourceDirectory>
+                            <targetPackage>com.sarbacane.entry_test.json</targetPackage>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

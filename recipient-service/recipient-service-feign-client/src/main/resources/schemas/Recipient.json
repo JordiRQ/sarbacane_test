@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "recipient-name": {
+      "type": "string"
+    },
+    "email-address": {
+      "type": "string"
+    },
+    "phone-number": {
+      "type": "string"
+    }
+  },
+  "required": ["recipient-name", "email-address", "phone-number"],
+  "additionalProperties": false
+}

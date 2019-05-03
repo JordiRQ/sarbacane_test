@@ -1,0 +1,22 @@
+server:
+  port: 6367
+  servlet.context-path: /recipient-service
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      use-new-id-generator-mappings: true
+    properties.hibernate.format_sql: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    platform: h2
+    username: root
+    password: root
+    driver-class-name: org.h2.Driver
+    initialize: true
+    initialization-mode: always
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false

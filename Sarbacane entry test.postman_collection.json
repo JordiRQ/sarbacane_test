@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "b39e8fe6-e829-49e1-b73d-18c8e3cff1f7",
+		"name": "Sarbacane entry test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Process CSV",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "csv_file",
+							"description": "",
+							"type": "file"
+						}
+					]
+				},
+				"url": "localhost:6365/csv-processor/v1/process-file"
+			},
+			"response": []
+		},
+		{
+			"name": "Get recipients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "csv_file",
+							"description": "",
+							"type": "file"
+						}
+					]
+				},
+				"url": "localhost:6367/recipient-service/v1/recipients"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit recipients",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"recipients\": [\n\t\t{\n\t\t\t\"recipient-name\": \"James Bond\",\n\t\t\t\"email-address\": \"jamesbond@gmail.com\",\n\t\t\t\"phone-number\": \"+34696654321\"\n\t\t}\t\n\t]\n}"
+				},
+				"url": "localhost:6367/recipient-service/v1/process-recipients"
+			},
+			"response": []
+		}
+	]
+}

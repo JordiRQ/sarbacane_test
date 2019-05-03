@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "recipients": {
+      "type": "array",
+      "items": {"$ref" : "Recipient.json"}
+    }
+  },
+  "required": ["recipients"],
+  "additionalProperties": false
+}
